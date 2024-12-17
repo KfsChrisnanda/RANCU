@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - RANCU</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            background: url('{{ url_for("static", filename="bg6.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Header Navigation */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0); /* Transparent */
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+        }
+
+        .navbar .menu .active {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+            font-weight: bold;
+        }
+
+        .navbar .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffcc00;
+            position: absolute;
+            right: 20px;
+        }
+
+        .start-btn {
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 10px;
+            right: 45px;
+            box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+        }
+
+        .start-btn:hover {
+            background-color: #f8b400;
+            border-color: #f8b400;
+            color: #000;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 120px auto;
+            padding: 40px;
+            max-width: 1200px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-left {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ffcc00;
+        }
+
+        .contact-item span {
+            font-size: 1.2rem;
+            color: #ffcc00;
+        }
+
+        /* Team Members */
+        .team-members {
+            margin: 40px auto;
+            text-align: center;
+            color: #ffcc00;
+            font-size: 1.3rem;
+        }
+
+        .team-members ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .team-members li {
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #ccc;
+            font-size: 1.2rem;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <div class="navbar">
+        <div class="menu">
+            <a href="/home">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/faq">FAQ</a>
+            <a href="/contact" class="active">Contact Us</a>
+        </div>
+        <a href="/index" class="start-btn">Start</a>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-container">
+        <!-- Contact Info -->
+        <div class="contact-left">
+            <div class="contact-item">
+                <img src="{{ url_for('static', filename='im4.jpg') }}" alt="Instagram">
+                <span>@RANCU.CO</span>
+            </div>
+            <div class="contact-item">
+                <img src="{{ url_for('static', filename='im5.png') }}" alt="Phone">
+                <span>0812345678</span>
+            </div>
+            <div class="contact-item">
+                <img src="{{ url_for('static', filename='im6.jpg') }}" alt="Email">
+                <span>customerservice@rancu.com</span>
+            </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial">
+            <h3>User 2 ⭐⭐⭐⭐⭐</h3>
+            <p>"RANCU's platform has been a game changer! The detailed insights helped me make smarter decisions, and I now have clarity on my financial goals. Highly recommended!"</p>
+        </div>
+    </div>
+
+    <!-- Team Members -->
+    <div class="team-members">
+        <h2>Meet the Team</h2>
+        <ul>
+            <li>Kefas Chrisnanda - 164231047</li>
+            <li>Manisa - 164231050</li>
+            <li>Garnetta Sofia - 164231092</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 KELOMPOK 14. All rights reserved.
+    </footer>
+</body>
+</html>
