@@ -5,3 +5,4 @@ pandas==2.0.3
 pmdarima==2.0.4
 yfinance==0.2.50
 gunicorn==20.0.0
+werkzeug==2.2.2
