@@ -12,9 +12,13 @@ from matplotlib.backends.backend_pdf import PdfPages
 # Initialize Flask app
 app = Flask(__name__)
 
-# Path to inflation data file (adjust based on your directory structure)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_INFLASI_PATH = os.path.join(BASE_DIR, "DataInflasi.xlsx")
+# List besar inflasi (dalam desimal, misalnya 0.0218 untuk 2.18%)
+INFLASI_VALUES = [
+    0.0218, 0.0206, 0.0264, 0.0347, 0.0355, 0.0435, 0.0494, 0.0469, 0.0595, 0.0571,
+    0.0542, 0.0551, 0.0528, 0.0547, 0.0497, 0.0433, 0.0400, 0.0352, 0.0308, 0.0327,
+    0.0228, 0.0256, 0.0286, 0.0261, 0.0257, 0.0275, 0.0305, 0.0300, 0.0284, 0.0251,
+    0.0213, 0.0212, 0.0184, 0.0171, 0.0155
+]
 
 # List of stock codes
 STOCK_CODES = [
@@ -41,14 +45,6 @@ def arima_predict(data, steps=1):
     model = auto_arima(data, seasonal=False, stepwise=True, suppress_warnings=True)
     forecast = model.predict(n_periods=steps)
     return forecast
-
-# Function to process inflation data from Excel file
-def process_inflation_data(file_path):
-    df = pd.read_excel(file_path,engine='openpyxl')
-    if "Inflasi (%)" not in df.columns:
-        raise ValueError("File harus memiliki kolom 'Inflasi (%)'")
-    return df["Inflasi (%)"].dropna().values / 100  # Convert to decimal
-
 
 @app.route("/")
 def start():
@@ -90,10 +86,7 @@ def predict():
     except Exception as e:
         return f"Error saat mengunduh data saham: {str(e)}"
 
-    try:
-        inflation_data = process_inflation_data(DATA_INFLASI_PATH)
-    except Exception as e:
-        return f"Error saat memproses data inflasi: {str(e)}"
+    inflation_data = INFLASI_VALUES
 
     latest_prices = stock_prices.values
     predicted_prices = arima_predict(latest_prices, steps=predict_months)
