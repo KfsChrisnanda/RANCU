@@ -44,7 +44,7 @@ def arima_predict(data, steps=1):
 
 # Function to process inflation data from Excel file
 def process_inflation_data(file_path):
-    df = pd.read_excel(file_path)
+    df = pd.read_excel(file_path,engine='openpyxl')
     if "Inflasi (%)" not in df.columns:
         raise ValueError("File harus memiliki kolom 'Inflasi (%)'")
     return df["Inflasi (%)"].dropna().values / 100  # Convert to decimal
