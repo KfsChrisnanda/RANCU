@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Prediction Result</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            background: url('{{ url_for("static", filename="bg3.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+       /* Header Navigation */
+       .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.0); /* Slight background for navbar */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+        }
+
+        /* Glow effect for active page */
+        .navbar .menu .active {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+            font-weight: bold;
+        }
+
+        .navbar .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffcc00;
+            position: absolute;
+            right: 20px;
+        }
+
+        /* Start Button */
+        .start-btn {
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 10px;
+            right: 45px;
+            box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+        }
+
+        .start-btn:hover {
+            background-color: #f8b400;
+            border-color: #f8b400;
+            color: #000;
+            box-shadow: 0 0 15px #ffcc00, 0 0 25px #ffcc00, 0 0 35px #ffcc00;
+        }
+
+        /* Container */
+        .result-container {
+            margin: 140px auto;
+            width: 85%;
+            max-width: 1400px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffde59;
+            margin-bottom: 10px;
+        }
+
+        .result-header p {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .chart-container {
+            margin-bottom: 30px;
+        }
+
+        .chart-container img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+
+        table th, table td {
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #ffde59;
+            color: #000;
+            font-size: 1.2rem;
+        }
+
+        table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        table tr:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Download Buttons */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #ffcc00;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .button-container a:hover {
+            background-color: #ffaa00;
+            box-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <div class="navbar">
+        <div class="menu">
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="/faq">FAQ</a>
+            <a href="/contact">Contact</a>
+        </div>
+    <a href="/index" class="start-btn">Start</a>
+    </div>
+
+    <!-- Result Section -->
+    <div class="result-container">
+        <div class="result-header">
+            <h1>Investment Prediction Result</h1>
+            <p>Predicted performance for stock <strong>{{ stock_code }}</strong></p>
+        </div>
+
+        <!-- Charts -->
+        <div class="chart-container">
+            <img src="{{ plot_url1 }}" alt="Investment Value Chart">
+            <img src="{{ plot_url2 }}" alt="Savings and Inflation Chart">
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Savings (Rp)</th>
+                        <th>Price per Lot (Rp)</th>
+                        <th>Lots Owned</th>
+                        <th>Investment Value (Rp)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table_data %}
+                    <tr>
+                        <td>{{ row.month }}</td>
+                        <td>{{ row.savings }}</td>
+                        <td>{{ row.price_per_lot }}</td>
+                        <td>{{ row.lots_owned }}</td>
+                        <td>{{ row.investment_value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="button-container">
+            <a href="{{ url_for('download_csv', csv_data=table_data_csv) }}">Download CSV</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 KELOMPOK 14. All rights reserved.
+    </footer>
+</body>
+</html>

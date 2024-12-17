@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANCU - About Us</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            background: url('{{ url_for("static", filename="bg4.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Header Navigation */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0); /* Transparency */
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+        }
+
+        /* Glow effect for active page */
+        .navbar .menu .active {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+            font-weight: bold;
+        }
+
+        .navbar .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffcc00;
+            position: absolute;
+            right: 20px;
+        }
+        /* Start Button */
+        .start-btn {
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 10px;
+            right: 45px;
+            box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+        }   
+
+        .start-btn:hover {
+            background-color: #f8b400;
+            border-color: #f8b400;
+            color: #000;
+            box-shadow: 0 0 15px #ffcc00, 0 0 25px #ffcc00, 0 0 35px #ffcc00;
+        }
+
+        /* About Section */
+        .about-container {
+            margin: 140px auto 80px;
+            width: 85%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            min-height: 80vh; /* Ensures full height usage */
+        }
+
+        .about-text {
+            width: 55%;
+        }
+
+        .about-text h1 {
+            font-size: 4rem; /* Enlarged */
+            font-weight: 700;
+            color: #ffde59;
+            margin-bottom: 30px;
+        }
+
+        .about-text p {
+            font-size: 1.5rem; /* Enlarged */
+            line-height: 2; /* Increased */
+            margin-bottom: 25px;
+        }
+
+        .testimonial {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.3rem; /* Enlarged */
+        }
+
+        .about-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            width: 40%;
+        }
+
+        .about-icons .icon-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Add image to the left of titles */
+        .about-icons .icon-item img {
+            width: 50px; /* Set width of the small element */
+            height: 50px; /* Set height of the small element */
+            object-fit: contain;
+        }
+
+        .about-icons .icon-item i {
+            font-size: 3rem; /* Enlarged */
+            color: #ffde59;
+        }
+
+        .about-icons .icon-item h3 {
+            font-size: 1.8rem; /* Enlarged */
+            margin: 0;
+        }
+
+        .about-icons .icon-item p {
+            font-size: 1.2rem; /* Enlarged */
+            margin: 8px 0 0;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #ccc;
+            font-size: 1.2rem; /* Enlarged */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <div class="navbar">
+        <div class="menu">
+            <a href="/home">Home</a>
+            <a href="/about" class="active">About Us</a>
+            <a href="/faq">FAQ</a>
+            <a href="/contact">Contact Us</a>
+        </div>
+        <a href="/index" class="start-btn">Start</a>
+    </div>
+
+    <!-- About Section -->
+    <div class="about-container">
+        <!-- Left Side: Text -->
+        <div class="about-text">
+            <h1>Our Mission</h1>
+            <p>Our mission is simple: to empower users to make smarter financial decisions with the help of accurate predictions and actionable insights.</p>
+            <p>We understand the challenges of navigating unpredictable markets and the impact of inflation on your hard-earned savings. That’s why RANCU is here—to provide clarity and confidence in your financial journey.</p>
+            <div class="testimonial">
+                <p><strong>User 1</strong> ⭐⭐⭐⭐⭐</p>
+                <p>"RANCU has completely changed the way I approach investing. The prediction tools are incredibly accurate and easy to use!"</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Icons -->
+        <div class="about-icons">
+            <div class="icon-item">
+                <img src="{{ url_for('static', filename='im1.png') }}" alt="im1">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <h3>Combat Inflation with Confidence</h3>
+                    <p>RANCU offers tools to predict the future value of your investments and compare them against inflation.</p>
+                </div>
+            </div>
+            <div class="icon-item">
+                <img src="{{ url_for('static', filename='im2.jpg') }}" alt="im2">
+                <i class="fas fa-cogs"></i>
+                <div>
+                    <h3>Data-Driven Precision</h3>
+                    <p>Our advanced models analyze historical data to forecast stock performance with high accuracy.</p>
+                </div>
+            </div>
+            <div class="icon-item">
+                <img src="{{ url_for('static', filename='im3.jpg') }}" alt="im3">
+                <i class="fas fa-wallet"></i>
+                <div>
+                    <h3>Simplified Financial Planning</h3>
+                    <p>RANCU’s intuitive interface ensures anyone can access professional-grade predictions with ease.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 KELOMPOK 14. All rights reserved.
+    </footer>
+
+</body>
+</html>
